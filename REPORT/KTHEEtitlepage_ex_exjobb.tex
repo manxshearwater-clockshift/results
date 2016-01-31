@@ -8,7 +8,7 @@
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{float}
 \usepackage{adjustbox}
-\usepackage{ amssymb }
+\usepackage{amssymb}
 \usepackage{hyperref}
 
 \usepackage{biblatex}
@@ -82,7 +82,7 @@ where $\checkmark$ means full 24 hours, $\checkmark$ \textendash means between 1
 The presumption was that the clock-shift would not work immediately, comparable with a jet-lag for human beings. Therefore the expectation was that the clock-shift would work, but in steps of 1 hour per day. This is a note that is important for the evaluation.\\\\
 The main goal of this research was to validate whether the clock-shift worked based on the audio-recordings. To validate this the following sub-questions were attempted to answer:\\
  (I)    What is the activity pattern of the Manx shearwater during 24 hours in the audio recordings? \\
- (II)   What is the difference between the unshifted days and the shifted days in the activity pattern?
+ (II)   What is the difference between the non-shifted days and the shifted days in the activity pattern?
  
 %%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{subsection}{Strategy}
@@ -142,7 +142,7 @@ The programs repeats this procedure for every hour. At the end the program compu
 \addcontentsline{toc}{subsubsection}{Anomaly detection}
 \subsubsection*{Anomaly detection}
 The idea of anomaly detection is to detect anomalous points or anomalous vectors given the data. As anomaly detection algorithm we chose to use the least-squares kernel based method. If there are two vectors x and y then a kernel is the space of all vectors in x that will denote in the zero-vector in y. The least squares equation is an equation to compute the distance between the estimation and the real value The idea of is that we want to minimize this distance using the algorithms and kernels. For an extensive explanation of this algorithm read this reference \cite{engel2004kernel}.\\\\
-For this research the training data was the data of the amount of shuffles for each hour in all unshifted days, these are six vectors which each represent an non-shifted day. Then a shifted day was added to the data. We did this for each shifted day. We hoped to see that this shifted vector would be flagged as anomalous before the shift, because it must not fit in the non-hifted day pattern. Also we wanted to see if this shifted vector was flagged as not anomalous after the shift of 4 hours. When this would be the case, we could conclude that the clock-shift worked.
+For this research the training data was the data of the amount of shuffles for each hour in all non-shifted days, these are six vectors which each represent an non-shifted day. Then a shifted day was added to the data. We did this for each shifted day. We hoped to see that this shifted vector would be flagged as anomalous before the shift, because it must not fit in the non-shifted day pattern. Also we wanted to see if this shifted vector was flagged as not anomalous after the shift of 4 hours. When this would be the case, we could conclude that the clock-shift worked.
 %%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{Results}
 \section*{Results}
@@ -199,13 +199,13 @@ red: percentage of the of the hours that falls in the confidence interval decrea
 \label{my-label}
 \end{table}
 The hours of shifting are the hours we shift the timeline of the shifted day. In the green cells are the percentage of hours that falls in the confidence interval increases comparing to the base case where no shift has been made yet, in the red cells the percentage decreases and in the yellow cells the percentage stays the same. If the clock-shift worked then the percentage must increases.\\\\
-Because the birds will not change their behaviour immediately after the clock shift the columns shifted-hours 1,2 and 3 are more important for day 22. In the table 3 of the 6 birds percentage increased for day 22 for the columns shifted-hours 1,2 or 3, which are bird b174, b179 and DB4. For day 23 the shifted hours 2,3,4 are more important assuming the birds is adapting  to the clock-shift better now. Here we can see that 3 of the 6 birds percentage increased at in one of the three important hours.\\\\For the last day the important columns are the shifted-hours 3 and 4, assuming again that the bird has now adapt more to the clock-shift.Remark that day 24 is the most important day to compare because at this day we will assume that the bird has fully adapt tot the clock-shift. Interesting to see is that the percentage of four birds (b73, b174, b179 and DB4) increased when we shift the timeline for 3 hours. So it looks like that these four birds are successfully clock-shifted for 3 hours. Only bird b73 looks like it has been clock-shifted for 4 hours.\\\\
+Because the birds will not change their behaviour immediately after the clock shift the columns shifted-hours 1, 2 and 3 are more important for day 22. In the table 3 of the 6 birds percentage increased for day 22 for the columns shifted-hours 1, 2 or 3, which are bird b174, b179 and DB4. For day 23 the shifted hours 2, 3, 4 are more important assuming the birds is adapting  to the clock-shift better now. Here we can see that 3 of the 6 birds percentage increased at in one of the three important hours.\\\\For the last day the important columns are the shifted-hours 3 and 4, assuming again that the bird has now adapted more to the clock-shift. Remark that day 24 is the most important day to compare because at this day we will assume that the bird has fully adapted to the clock-shift. Interesting to see is that the percentage of four birds (b73, b174, b179 and DB4) increased when we shifted the timeline for 3 hours. So it looks like that these four birds are successfully clock-shifted for 3 hours. Only bird b73 looks like it has been clock-shifted for 4 hours.\\\\
 Four of the six birds showed good results, so there are signs that the clock-shift worked, but it is not significant enough to conclude that with confidence. 
 
 
 \addcontentsline{toc}{subsection}{Anomaly detection}
 \subsection*{Anomaly detection}
-Anomaly detection will flag vectors as being anomalous if they do not fit a certain a group of data(cluster), which means that the pattern of activity differs. The vector of the activity of a shifted day will be compared with the cluster of the unshifted days using the least squared kernel-based method. If the compared vector exceeds a certain threshold than the vector will be flagged as anomalous. Due to the birds will not shift immediately we defined the clock-shift by steps of 1 hour. The results are as following:\\
+Anomaly detection will flag vectors as being anomalous if they do not fit a certain a group of data(cluster), which means that the pattern of activity differs. The vector of the activity of a shifted day will be compared with the cluster of the non-shifted days using the least squared kernel-based method. If the compared vector exceeds a certain threshold than the vector will be flagged as anomalous. Due to chance that the birds will not shift immediately we defined the clock-shift by steps of 1 hour. The results are as following:\\
 \begin{table}[H]
 \centering
 \begin{tabular}{llllllllllllllll}
@@ -225,8 +225,8 @@ Anomaly detection will flag vectors as being anomalous if they do not fit a cert
 \caption{Results of the anomaly detection test}
 \label{my-label}
 \end{table}
-Each row represents a bird and the test is done on all three shifted days, which are day 22,23 and 24. The 0-4 for each day represents the hours of shifting, this is done because the birds could not adapt immediately to the clock-shift. If the cell is green it means that the hour is an inlier which means that it fits in the pattern of the unshifted days. If the cell is red it means that it is flagged as an outlier and the pattern differs significantly.\\\\
-To validate whether the clock-shift has worked the shifted day must be flagged as outlier if we not have shifted the timeline yet(shifted hours=0) and be flagged as inlier in minimal one of the shifted hours (shifted hours = 1,2,3,4). This pattern appeared only 3 times in the table as we can see in table 3. So it is not enough to conclude if the clock-shift has worked or not using this test. 
+Each row represents a bird and the test is done on all three shifted days, which are day 22, 23 and 24. The 0-4 for each day represents the hours of shifting, this is done because the birds could not adapt immediately to the clock-shift. If the cell is green it means that the hour is an normality which means that it fits in the pattern of the non-shifted days. If the cell is red it means that it is flagged as an outlier and the pattern differs significantly.\\\\
+To validate whether the clock-shift has worked the shifted day must be flagged as outlier if we not have shifted the timeline yet (shifted hours=0) and be flagged as normality in minimal one of the shifted hours (shifted hours = 1, 2, 3, 4). This pattern appeared only 3 times in the table as we can see in table 3. So it is not enough to conclude if the clock-shift has worked or not using this test. 
 
 
 \addcontentsline{toc}{section}{Discussion}
@@ -291,9 +291,9 @@ After trying several tests running on only one hour of the recording we decided 
 The last meeting of week 2 with Oliver Padget we wanted to show him the results the of burrow b73. We finished the code for the complete run on b73 and also implemented the code to plot and read the data from the CSV file. 
 We added also the plot of the last day because the clock shift will not immediately work after 1 day. The expectation of the researcher is that the biological clock will shift 1 hour a day. \\\\
 Oliver Padget was satisfied with the results and saw signs that the clock shift has worked. Because b73 has been clock-shifted forward he expected to see the activity pattern shift to the left. He said that you can see the first peak shift to the left and therefore the results are hopeful. He advised us to normalize the data and also use average smoothing to get cleaner results and to see a better pattern/shift.\\\\
-After the week 2 Oliver Padget returned to the UK and we agreed to communicate further on email and also continue our weekly meetings on Skype.\\\\
+After the week 2 Oliver Padget returned to the UK and we agreed to communicate further by email and also continue our weekly meetings on Skype.\\\\
 Regarding the test results we discovered some errors. Some of the recordings were not recording the full 24 hours, therefore some time segments returned no data. After implement code to fix this to program was ready to run on all burrows.\\\\
-For each burrow the run-time is 5 hours, so we planned to run the computer the whole weekend and have the results at the beginning of week 3.\\\\
+For each burrow the run-time is approximately five to six hours, so we planned to run the computer the whole weekend and have the results at the beginning of week 3.\\\\
 In week 3 we hope to have the complete results and conclude whether the clock-shift has worked or not. 
 
 \addcontentsline{toc}{subsubsection}{Week 3}
